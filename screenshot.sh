@@ -9,7 +9,10 @@ case "$1" in
 *) maim "$output" || exit ;;
 esac
 
-# TODO: copy output to clipboard
-xclip -sel clip -t image/png "$output"
+if [[ "$XDG_SESSION_TYPE" = "wayland" ]]; then
+	wl-copy <"$output"
+else
+	xclip -sel clip -t image/png "$output"
+fi
 
 notify-send "Screenshot saved in $output"
