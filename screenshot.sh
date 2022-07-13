@@ -9,4 +9,7 @@ case "$1" in
 *) maim "$output" || exit ;;
 esac
 
+# TODO: copy output to clipboard
+xclip -sel clip -t image/png "$output"
+
 notify-send "Screenshot saved in $output"
